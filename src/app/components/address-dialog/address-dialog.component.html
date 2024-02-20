@@ -1,0 +1,99 @@
+<div class="container my-3">
+    @if (addAddressForm) {
+        <div class="d-flex mx-3 my-2">
+            <h1 class="fs-2 fw-bold flex-fill" mat-dialog-title>Add Address Dialog</h1>
+            <button mat-raised-button color="warn" mat-dialog-close (click)="closeDialog()">X</button>
+        </div>
+
+        <div mat-dialog-content class="mx-3">
+            <form [formGroup]="addAddressForm" class="d-flex flex-column">
+
+                <mat-form-field>
+                <mat-label>Addressee</mat-label>
+                <input matInput type="text" id="addressee" formControlName="addressee">
+                </mat-form-field>
+                <app-form-validator-hint
+                    [required]="true"
+                    [form]="addAddressForm"
+                    [fieldControlName]="'addressee'"
+                    [fieldName]="'Addressee'"
+                    [checkMax]="true"
+                    [max]="50"
+                    >
+                </app-form-validator-hint>
+
+                <mat-form-field>
+                    <mat-label>Street 1</mat-label>
+                    <input matInput type="text" id="street1" formControlName="street1">
+                </mat-form-field>
+                <app-form-validator-hint
+                    [required]="true"
+                    [form]="addAddressForm"
+                    [fieldControlName]="'street1'"
+                    [fieldName]="'Street 1'"
+                    [checkMax]="true"
+                    [max]="50"
+                    >
+                </app-form-validator-hint>
+
+
+                <mat-form-field>
+                    <mat-label>Street 2</mat-label>
+                    <input matInput type="text" id="street2" formControlName="street2">
+                </mat-form-field>
+                <app-form-validator-hint
+                    [form]="addAddressForm"
+                    [fieldControlName]="'street2'"
+                    [fieldName]="'Street 2'"
+                    [checkMax]="true"
+                    [max]="50"
+                    >
+                </app-form-validator-hint>
+                <mat-form-field>
+                    <mat-label>Town</mat-label>
+                    <input matInput type="text" id="town" formControlName="town">
+                </mat-form-field>
+                <app-form-validator-hint
+                    [required]="true"
+                    [form]="addAddressForm"
+                    [fieldControlName]="'town'"
+                    [fieldName]="'Town'"
+                    [checkMax]="true"
+                    [max]="50"
+                    >
+                </app-form-validator-hint>
+
+                <mat-form-field>
+                    <mat-label>County</mat-label>
+                    <input matInput type="text" id="county" formControlName="county">
+                </mat-form-field>
+                <app-form-validator-hint
+                    [form]="addAddressForm"
+                    [fieldControlName]="'county'"
+                    [fieldName]="'County'"
+                    [checkMax]="true"
+                    [max]="50"
+                    >
+                </app-form-validator-hint>
+
+                <mat-form-field>
+                    <mat-label>Postcode</mat-label>
+                    <input matInput type="text" id="county" formControlName="postcode">
+                </mat-form-field>
+                <app-form-validator-hint
+                    [required]="true"
+                    [form]="addAddressForm"
+                    [fieldControlName]="'postcode'"
+                    [fieldName]="'Postcode'"
+                    [customValidatorName]="'invalidPostcode'"
+                    [customValidatorErrorMessage]="'The Postcode is invalid'"
+                    >
+                </app-form-validator-hint>
+            </form>
+        </div>
+
+        <div mat-dialog-actions class="d-flex justify-content-end">
+            <button mat-raised-button color="primary" [disabled]="addAddressForm.invalid" (click)="onSaveAddress()">Save</button>
+        </div>
+    }
+</div>

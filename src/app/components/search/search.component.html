@@ -1,0 +1,48 @@
+<div class="d-flex flex-row my-5">
+    <form [formGroup]="searchForm" class="w-100">
+        <mat-form-field class="w-100">
+          <mat-label>Search address</mat-label>
+          <input
+            matInput
+            placeholder="f47ac10b-58cc-4372-a567-0e02b2c3d479"
+            formControlName="search"
+            >
+        </mat-form-field>
+
+        <app-form-validator-hint
+            [required]="true"
+            [form]="searchForm"
+            [fieldControlName]="'search'"
+            [fieldName]="'Address'"
+            [customValidatorName]="'invalidGuid'"
+            [customValidatorErrorMessage]="'Invalid GUID format'"
+        >
+        </app-form-validator-hint>
+    </form>
+    <div class="d-flex justify-content-center align-items-center" style="height: 56px">
+        <button class="mx-2" mat-raised-button color="primary" [disabled]="searchForm.invalid" (click)="onSearch()">Search</button>
+    </div>
+</div>
+
+<div class="d-flex my-3">
+    <button mat-raised-button color="accent" (click)="openAddAddressDialog()">Add Address</button>
+</div>
+
+<div>
+    @if (addresses.length > 0) {
+        @for (address of addresses; track $index) {
+            <mat-card class="my-2 w-25">
+                <mat-card-content>
+                    <p><strong>GUID:</strong> {{ address.addressId }}</p>
+                    <p><strong>Addressee:</strong> {{ address.addressee }}</p>
+                    <p><strong>Street 1:</strong> {{ address.street1 }}</p>
+                    <p><strong>Street 2:</strong> {{ address.street2 }}</p>
+                    <p><strong>Town:</strong> {{ address.town }}</p>
+                    <p><strong>County:</strong> {{ address.county }}</p>
+                    <p><strong>Postcode:</strong> {{ address.postcode }}</p>
+                </mat-card-content>
+            </mat-card>
+        }
+        <button mat-raised-button color="primary" class="my-3" (click)="onClear()">Clear</button>
+    }
+</div>
